@@ -35,6 +35,7 @@ Este proyecto forma parte de mi entrenamiento para convertirme en **desarrollado
 - Listar tareas
 - Marcar tareas como completadas
 - Eliminar tareas
+- Editar tareas existentes
 - Persistencia en LocalStorage
 
 ---

@@ -76,6 +76,10 @@ body{
     justify-content: space-between;
 }
 
+.btnTask{
+    margin-left: 3px;
+}
+
 .done{
     text-decoration: line-through;
 }

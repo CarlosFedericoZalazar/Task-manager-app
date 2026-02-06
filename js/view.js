@@ -17,9 +17,21 @@ export function renderizar(lista, tareas, handlers) {
         textoSpan.addEventListener("click", () => {
             handlers.onToggle(t.id);
         });
+        const divButtons = document.createElement("div");
+        divButtons.className = "div-buttons";
+
+        const botonEdit = document.createElement("button");
+        botonEdit.className = "btnTask";
+        botonEdit.innerText = "✏️";
+
+        botonEdit.addEventListener("click", () => {
+            if (!t.completada) {
+                handlers.onUpdate(t.id, t.texto);
+            }
+        });
 
         const botonDel = document.createElement("button");
-        botonDel.className = "btnData";
+        botonDel.className = "btnData btnTask";
         botonDel.innerText = "❌";
 
         botonDel.addEventListener("click", () => {
@@ -27,7 +39,9 @@ export function renderizar(lista, tareas, handlers) {
         });
 
         item.appendChild(textoSpan);
-        item.appendChild(botonDel);
+        divButtons.appendChild(botonEdit);
+        divButtons.appendChild(botonDel);
+        item.appendChild(divButtons);
         lista.appendChild(item);
     }
 }

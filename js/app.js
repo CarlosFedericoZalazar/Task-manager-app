@@ -5,6 +5,7 @@ import { renderizar } from "./view.js";
 const buttonAgregar = document.getElementById("btnAgregar");
 const inputTareas = document.getElementById("inputTarea");
 const lista = document.getElementById("lista");
+let editingId = undefined;
 
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
@@ -12,24 +13,40 @@ function actualizarVista() {
     renderizar(lista, tareas, {
         onToggle: (id) => {
             tareas = Tasks.toggleTarea(tareas, id);
-            saveOnLocalStorage(tareas);
-            actualizarVista();
+            refresh();
         },
         onDelete: (id) => {
             tareas = Tasks.borrar(tareas, id);
-            saveOnLocalStorage(tareas);
-            actualizarVista();
+            refresh();
+        },
+        onUpdate: (id, texto) => {
+            editingId = id;
+            inputTareas.value = texto;            
+            buttonAgregar.textContent = "Modificar";
         }
     });
+}
+
+function refresh(){
+    saveOnLocalStorage(tareas);
+    actualizarVista();
 }
 
 actualizarVista();
 
 buttonAgregar.addEventListener("click", () => {
-    if (inputTareas.value.trim() !== "") {
-        tareas = [...tareas, Tasks.addTarea(inputTareas.value)];
-        saveOnLocalStorage(tareas);
-        actualizarVista();
+    if(buttonAgregar.textContent === "Agregar"){        
+        if (inputTareas.value.trim() !== "") {
+            tareas = [...tareas, Tasks.addTarea(inputTareas.value)];
+            refresh();
+            inputTareas.value = "";
+        }
+    }
+    else{
+        tareas = Tasks.updateTask(tareas, editingId, inputTareas.value);
         inputTareas.value = "";
+        editingId = undefined;
+        refresh();
+        buttonAgregar.textContent = "Agregar";
     }
 });

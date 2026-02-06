@@ -11,6 +11,19 @@ export const borrar = (tareas, id) => {
     return tareasFilter;
 }
 
+export function updateTask(tareas, id, texto) {
+    return tareas.map(t => {
+        if (t.id === id) {
+            return {
+                ...t,
+                texto: texto
+            };
+        }
+        return t;
+    });
+}
+
+
 export function toggleTarea(tareas,id) {
     const tareaToggle = tareas.map(t => {
         if(t.id === id){
