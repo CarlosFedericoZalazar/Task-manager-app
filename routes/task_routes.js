@@ -7,7 +7,7 @@ router.get('/', getAllTask);
 
 router.post('/post', postNewTask);
 
-router.put('/put/:id', modifyTaskById);
+router.put('/:id', modifyTaskById);
 
 router.put('/toggle/:id', toggleTask);
 

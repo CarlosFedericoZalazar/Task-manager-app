@@ -40,5 +40,6 @@ Tabla principal: `tasks`
 npm install  
 npm run dev
 
-<!-- NameDB:DB_Task_Manager
-PassDb:e09ZtYkxL9OREpU3    ! -->
+## VERCEL DEPLOY
+https://task-manager-backend-zeta-five.vercel.app/
+
