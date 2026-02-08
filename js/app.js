@@ -72,18 +72,23 @@ async function refresh(){
 buttonAgregar.addEventListener("click", async () => {
     if (buttonAgregar.textContent === "Agregar") {        
         if (inputTareas.value.trim() !== "") {
-            await api.createTask(inputTareas.value);   // ⬅️ ESPERAR
-            await refresh();                           // ⬅️ luego recargar
+            await api.createTask(inputTareas.value);
+            await refresh();
             inputTareas.value = "";
         }
-    } else {
-        await api.updateTask(editingId, inputTareas.value); // ← cuando implementes update real
+    } 
+    else {
+        await api.updateTask(editingId, {
+            texto: inputTareas.value
+        });
+
         await refresh();
         inputTareas.value = "";
         editingId = undefined;
         buttonAgregar.textContent = "Agregar";
     }
 });
+
 
 
 buttonAll.addEventListener("click",()=>{

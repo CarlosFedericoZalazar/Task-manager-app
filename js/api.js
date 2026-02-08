@@ -16,8 +16,8 @@ export async function createTask(texto) {
 }
 
 export async function toggleTask(id) {
-    const res = await fetch(`${API_URL}/tasks/${id}/toggle`, {
-        method: "PATCH"
+    const res = await fetch(`${API_URL}/tasks/toggle/${id}`, {
+        method: "PUT"
     });
     return res.json();
 }
@@ -26,6 +26,23 @@ export async function deleteTask(id) {
     const res = await fetch(`${API_URL}/tasks/id/${id}`, {
         method: "DELETE"
     });
+    return res.json();
+}
+
+export async function updateTask(id, updates) {
+    const res = await fetch(`${API_URL}/tasks/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updates)
+    });
+
+    if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err);
+    }
+
     return res.json();
 }
 
