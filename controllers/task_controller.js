@@ -3,8 +3,8 @@ import { supabase } from "../db/supabase.js";
 export const getAllTask  = async (req, res) => {
     const { data, error } = await supabase
         .from("tasks")
-        .select("*");
-
+        .select("*")
+        .order("id", { ascending: false }); // true para mostrar listado invertido
     if (error) {
         return res.status(500).json({ ok: false, error });
     }
