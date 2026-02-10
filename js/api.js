@@ -23,7 +23,7 @@ export async function toggleTask(id) {
 }
 
 export async function deleteTask(id) {
-    const res = await fetch(`${API_URL}/tasks/id/${id}`, {
+    const res = await fetch(`${API_URL}/tasks/${id}`, {
         method: "DELETE"
     });
     return res.json();
