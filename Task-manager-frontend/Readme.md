@@ -86,4 +86,4 @@ task-manager-frontend/
 
 Podés probar la aplicación funcionando en el siguiente enlace:
 
-👉 https://task-manager-frontend-kappa-sooty.vercel.app/
+👉 https://task-manager-app-omega-mauve.vercel.app/

@@ -43,5 +43,4 @@ npm install
 npm run dev
 
 ## VERCEL DEPLOY
-https://task-manager-backend-zeta-five.vercel.app/
-
+👉 https://task-manager-app-back-alpha.vercel.app
