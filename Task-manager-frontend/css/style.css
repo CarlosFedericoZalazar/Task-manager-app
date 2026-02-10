@@ -1,0 +1,136 @@
+/* Configuración General */
+html{
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #ebf0f4;
+    font-family: 'Inter', sans-serif; /* Mucho más moderna */
+    color: #1E293B;
+    margin: 0;
+    padding: 20px;
+}
+
+#header{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#main {
+    width: 100%;           
+    max-width: 600px;      
+    margin: 0 auto;       
+    display: flex;
+    flex-direction: column;
+}
+#title-header {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+}
+
+#text-pending{
+    padding-top: 2rem;
+}
+
+/* El contenedor del Input (Efecto Card) */
+#insert-data {
+    display: flex;    
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    border: none; /* Quitamos el borde sólido */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave */
+    margin-bottom: 20px;
+}
+
+#inputTarea {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    outline: none;
+    flex-grow: 1;  /* ocupa todo el espacio */
+}
+
+/* Botones */
+.buttons {
+    background-color: #6366F1;
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.buttons:hover {
+    background-color: #4F46E5;
+    color: white;
+}
+
+.done{
+    text-decoration: line-through;
+}
+
+/* Filtros (Estilo Pill) */
+#div-filters {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #E2E8F0;
+    color: #64748B;
+    font-size: 0.9rem;
+}
+
+.filter-btn.active {
+    background-color: #6366F1;
+    color: white;
+}
+
+/* La Lista de Tareas */
+#lista {
+    justify-self: center;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 800px; 
+}
+
+.task-item {
+    background: white;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Menos espacio en los bordes para aprovechar la pantalla */
+    }
+    
+    #insert-data {
+        flex-direction: column; /* Input arriba, botón abajo si es muy estrecho */
+        gap: 10px;
+    }
+    
+    #btnAgregar {
+        width: 100%; /* Botón ancho para que sea fácil tocar con el dedo */
+    }
+
+    #div-filters {
+        justify-content: center; /* Centra los filtros en móvil */
+        flex-wrap: wrap;         /* Si no caben, que bajen a la siguiente línea */
+    }
+}
