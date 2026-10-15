@@ -1,10 +1,10 @@
 // api.js
 const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
 
-export async function getTasks() {
+export const getTasks= async() => {
     const res = await fetch(`${API_URL}/tasks`);
     return res.json();
-}
+};
 
 export async function createTask(texto) {
     const res = await fetch(`${API_URL}/tasks/`, {
@@ -15,19 +15,19 @@ export async function createTask(texto) {
     return res.json();
 }
 
-export async function toggleTask(id) {
+export const toggleTask = async(id) => {
     const res = await fetch(`${API_URL}/tasks/${id}/toggle`, {
         method: "PUT"
     });
     return res.json();
-}
+};
 
-export async function deleteTask(id) {
+export const deleteTask = async (id) => {
     const res = await fetch(`${API_URL}/tasks/${id}`, {
         method: "DELETE"
     });
     return res.json();
-}
+};
 
 export async function updateTask(id, updates) {
     const res = await fetch(`${API_URL}/tasks/${id}`, {

@@ -1,4 +1,6 @@
 export function renderizar(lista, tareas, handlers) {
+
+    console.log("RENDERIZAR");
     lista.textContent = "";
 
     for (let t of tareas) {
