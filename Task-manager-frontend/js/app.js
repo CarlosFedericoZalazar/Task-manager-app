@@ -1,8 +1,6 @@
 import {cargarTareas, actualizarVista, refresh} from "./ui.js"
 import {initEvents} from "./events.js"
 
-import {createTask} from "./api.js";
-
 const DOM ={
     buttonAll: document.getElementById("buttonAll"),
     buttonPending:document.getElementById("buttonPending"),
