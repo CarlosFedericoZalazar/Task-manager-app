@@ -7,14 +7,14 @@ import {
   toggleTask
 } from "../controllers/task_controller.js";
 
-import { normalizeData } from "../middlewares/middleware_tasks.js";
+import { normalizeData, getDate } from "../middlewares/middleware_tasks.js";
 import { validateId } from "../middlewares/validateId.js";
 
 const router = express.Router();
 
 router.get("/", getAllTask);
 
-router.post("/", normalizeData, postNewTask);
+router.post("/", normalizeData, getDate, postNewTask);
 
 router.put("/:id", validateId, normalizeData, modifyTaskById);
 

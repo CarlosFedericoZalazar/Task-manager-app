@@ -1,5 +1,21 @@
 import { getTasksService } from "../services/taskService.js";
 
+export const getDate = async(req, res, next) =>{
+    try{
+        const {texto} = req.body;
+        
+        if(texto.inckude("")){
+            console.log("Formato Valido");
+            next();
+        }
+        else{
+            console.log("Formato Invalido");
+        } 
+    }catch(error){
+            console.log(error);
+    }
+}
+
 export const normalizeData = async (req, res, next) => {
     try {
         const tasks = await getTasksService();
