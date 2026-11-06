@@ -9,6 +9,7 @@ export function renderizar(lista, tareas, handlers) {
 
         const textoSpan = document.createElement("span");
         textoSpan.className = "texto";
+        textoSpan.id = "text-task"
         textoSpan.textContent = t.texto;
 
         if (t.completada) {
