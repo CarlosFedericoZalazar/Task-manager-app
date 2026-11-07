@@ -29,6 +29,8 @@ export function renderizar(lista, tareas, handlers) {
         botonEdit.addEventListener("click", () => {
             if (!t.completada) {
                 handlers.onUpdate(t);
+                botonDel.disabled = true;
+                botonEdit.disabled = true;
             }
         });
 

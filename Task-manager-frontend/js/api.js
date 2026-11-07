@@ -1,5 +1,6 @@
 // api.js
-const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
+//const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
+const API_URL = "http://localhost:3000"; // o localhost
 
 export const getTasks= async() => {
     const res = await fetch(`${API_URL}/tasks`);
