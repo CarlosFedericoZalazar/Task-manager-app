@@ -8,7 +8,8 @@ const DOM ={
     textPending: document.getElementById("text-pending"),    
     buttonAgregar: document.getElementById("btnAgregar"),
     inputTareas: document.getElementById("inputTarea"),
-    lista: document.getElementById("lista")
+    lista: document.getElementById("lista"),
+    error: document.getElementById("message-error")
 };
 
 cargarTareas(DOM);

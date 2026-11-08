@@ -36,15 +36,36 @@ body {
     padding-top: 2rem;
 }
 
+
 /* El contenedor del Input (Efecto Card) */
 #insert-data {
-    display: flex;    
+    display: flex;
+    flex-direction: column;    
     background: white;
-    padding: 12px;
+    padding: 1rem;
     border-radius: 12px;
     border: none; /* Quitamos el borde sólido */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave */
     margin-bottom: 20px;
+}
+
+#div-inputTask{
+    display: flex;
+}
+
+#message-error {
+    /* Quitamos los márgenes externos que empujan y usamos una altura fija para reservar el espacio */
+    margin: 0;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    height: 1.5rem; /* Ajusta este valor según el tamaño de tu fuente (font-size + line-height) */
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+    color: rgb(228, 74, 74);
+    text-shadow: #1E293B 1px;
+    
+    /* Opcional: si quieres que aparezca con una transición suave */
+    transition: opacity 0.2s ease;
 }
 
 #inputTarea {
@@ -79,9 +100,10 @@ body {
 
 /* Filtros*/
 #div-filters {
-    margin-bottom: 25px;
+    margin-bottom: 0.1rem;
     display: flex;
     gap: 10px;
+    justify-content: space-evenly;
 }
 
 .filter-btn {

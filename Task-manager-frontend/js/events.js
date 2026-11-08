@@ -7,7 +7,14 @@ export function initEvents(DOM) {
         // Acá manejás la lógica de agregar o actualizar
         if (DOM.buttonAgregar.textContent === "Agregar") {        
             if (DOM.inputTareas.value.trim() !== "") {
-                await api.createTask(DOM.inputTareas.value);
+                const res = await api.createTask(DOM.inputTareas.value);
+                console.log(res); // DARLE FORMA AL MENSAJE DE ERROR 
+
+                if(res.ok){
+                    DOM.error.textContent = " ";
+                }else{
+                    DOM.error.textContent = res.error;                    
+                }
                 cargarTareas(DOM);
                 DOM.inputTareas.value = "";
             }

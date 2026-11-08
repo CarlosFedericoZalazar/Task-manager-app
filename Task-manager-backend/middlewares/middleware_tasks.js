@@ -1,18 +1,22 @@
 import { getTasksService } from "../services/taskService.js";
 
-export const getDate = async(req, res, next) =>{
-    try{
-        const {texto} = req.body;
-        
-        if(texto.inckude("")){
+export const getDate = async (req, res, next) => {
+    try {
+        const { texto } = req.body;
+        console.log(texto);
+
+        // Cambiamos 'include' por 'includes'
+        if (texto && texto.includes("//")) {
             console.log("Formato Valido");
             next();
-        }
-        else{
+        } else {
             console.log("Formato Invalido");
+            // Es importante responder al cliente para que la petición no quede colgada
+            return res.status(400).json({ error: "Formato inválido. Debe incluir '//'." });
         } 
-    }catch(error){
-            console.log(error);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Error interno del servidor." });
     }
 }
 
