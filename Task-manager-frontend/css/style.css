@@ -37,14 +37,14 @@ body {
 }
 
 
-/* El contenedor del Input (Efecto Card) */
+/* Contenedor del Input (Efecto Card) */
 #insert-data {
     display: flex;
     flex-direction: column;    
     background: white;
     padding: 1rem;
     border-radius: 12px;
-    border: none; /* Quitamos el borde sólido */
+    border: none;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave */
     margin-bottom: 20px;
 }
@@ -54,17 +54,15 @@ body {
 }
 
 #message-error {
-    /* Quitamos los márgenes externos que empujan y usamos una altura fija para reservar el espacio */
     margin: 0;
     margin-top: 0.5rem;
     padding-left: 0.5rem;
-    height: 1.5rem; /* Ajusta este valor según el tamaño de tu fuente (font-size + line-height) */
+    height: 1.5rem; 
     line-height: 1.5rem;
     font-size: 0.9rem;
     color: rgb(228, 74, 74);
     text-shadow: #1E293B 1px;
     
-    /* Opcional: si quieres que aparezca con una transición suave */
     transition: opacity 0.2s ease;
 }
 
@@ -74,7 +72,7 @@ body {
     padding: 10px 15px;
     font-size: 1rem;
     outline: none;
-    flex-grow: 1;  /* ocupa todo el espacio */
+    flex-grow: 1;
 }
 
 /* Botones */
@@ -141,10 +139,10 @@ body {
     cursor: pointer;
 }
 
-/* Estado borroso inicial para el contenido */
+/* Estado borroso inicial del contenido */
 .blurred {
     filter: blur(6px);
-    pointer-events: none; /* Evita que el usuario interactúe con las tareas de fondo mientras loguea */
+    pointer-events: none;
     user-select: none;
     transition: filter 0.3s ease;
 }
@@ -171,7 +169,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    width: 90%;
+    width: 80%;
     max-width: 400px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -184,16 +182,14 @@ body {
 
 .modal-content input {
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 0.4rem;
 }
 
-
-
 @media (max-width: 480px) {
     body {
-        padding: 10px; /* Menos espacio en los bordes para aprovechar la pantalla */
+        padding: 10px;
     }
     
     #insert-data {

@@ -9,25 +9,11 @@ const DOM ={
     buttonAgregar: document.getElementById("btnAgregar"),
     inputTareas: document.getElementById("inputTarea"),
     lista: document.getElementById("lista"),
-    error: document.getElementById("message-error")
+    error: document.getElementById("message-error"),
+    authForm: document.querySelector('#auth-form'),
+    authModal: document.querySelector('#auth-modal'),
+    appContent: document.querySelector('#app-content')
 };
-
-const authForm = document.querySelector('#auth-form');
-const authModal = document.querySelector('#auth-modal');
-const appContent = document.querySelector('#app-content');
-
-
-authForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evita que se recargue la página
-
-    // Aquí validarías tu correo y contraseña (o tu lógica de autenticación)
-
-    // 1. Ocultamos el modal
-    authModal.style.display = 'none';
-
-    // 2. Quitamos el desenfoque y habilitamos clics en la app
-    appContent.classList.remove('blurred');
-});
 
 
 cargarTareas(DOM);

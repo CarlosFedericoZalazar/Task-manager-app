@@ -2,7 +2,19 @@ import { actualizarVista, getEditingId, setEditingId, cargarTareas, setcurrentFi
 import * as api from "./api.js";
 
 export function initEvents(DOM) {
-    // 1. Botón Agregar / Modificar
+
+    authForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Evita que se recargue la página
+    
+        // LÓGICA VALIDACION
+    
+        // ocultamos modal
+        authModal.style.display = 'none';
+    
+        // quitamos blureo
+        DOM.appContent.classList.remove('blurred');
+    });
+    
     DOM.buttonAgregar.addEventListener("click", async () => {
         // Acá manejás la lógica de agregar o actualizar
         if (DOM.buttonAgregar.textContent === "Agregar") {        
