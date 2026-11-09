@@ -141,6 +141,56 @@ body {
     cursor: pointer;
 }
 
+/* Estado borroso inicial para el contenido */
+.blurred {
+    filter: blur(6px);
+    pointer-events: none; /* Evita que el usuario interactúe con las tareas de fondo mientras loguea */
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+/* Estilos del Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscurecido sutil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 2.4rem;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.modal-content input {
+    padding: 1rem;
+    font-size: 1.4rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+}
+
+
+
 @media (max-width: 480px) {
     body {
         padding: 10px; /* Menos espacio en los bordes para aprovechar la pantalla */
