@@ -11,19 +11,39 @@
 </head>
 
 <body>
-    <!-- MODAL DE ACCESO -->
+    <!-- MODAL DE ACCESO / REGISTRO -->
     <div id="auth-modal" class="modal-overlay">
         <div class="modal-content">
-            <h2>Iniciar Sesión</h2>
-            <form id="auth-form">
-                <input type="email" id="inputEmail" placeholder="Correo electrónico" required>
-                <input type="password" id="inputPassword" placeholder="Contraseña" required>
-                <button type="submit" id="btnLogin" class="buttons">Acceder</button>
-            </form>
+            <!-- VISTA INICIAR SESIÓN -->
+            <div id="login-container">
+                <h2 class="text-tittle-modal">Iniciar Sesión</h2>
+                <form id="auth-form">
+                    <input type="email" id="inputEmail" placeholder="Correo electrónico" required>
+                    <input type="password" id="inputPassword" placeholder="Contraseña" required>
+                    <button type="submit" id="btnLogin" class="buttons">Acceder</button>
+                    <span id="text-link-register">¿ERES NUEVO? <a href="#" id="link-to-register">REGÍSTRATE</a></span>
+                </form>
+            </div>
+
+            <!-- VISTA REGISTRO (oculta por defecto) -->
+            <div id="register-container" class="hidden">
+                <h2 class="text-tittle-modal">Crear Cuenta</h2>
+                <form id="register-form">
+                    <input type="text" id="regName" placeholder="Nombre completo" required>
+                    <input type="email" id="regEmail" placeholder="Correo electrónico" required>
+                    <input type="password" id="regPassword" placeholder="Contraseña" required>
+                    <button type="submit" id="btnRegister" class="buttons">Registrarse</button>
+                    <span>¿YA TIENES CUENTA? <a href="#" id="link-to-login">INICIA SESIÓN</a></span>
+                </form>
+            </div>
         </div>
     </div>
 
     <div id="app-content" class="blurred">
+        <header id="header">
+            <h1 id="title-header">MIS TAREAS</h1>
+            <span id="text-pending">Pendientes 0/0</span>
+        </header>
         <main id="main">
             <div id="insert-data">
                 <div id="div-inputTask">
@@ -43,7 +63,7 @@
         </main>
     </div>
 
+    <script type="module" src="./js/app.js"></script>
 </body>
-<script type="module" src="./js/app.js"></script>
 
 </html>

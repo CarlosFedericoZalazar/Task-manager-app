@@ -42,7 +42,7 @@ body {
     display: flex;
     flex-direction: column;    
     background: white;
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 12px;
     border: none;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave */
@@ -148,6 +148,12 @@ body {
 }
 
 /* Estilos del Modal */
+
+.text-tittle-modal{
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -164,12 +170,13 @@ body {
 
 .modal-content {
     background: #ffffff;
-    padding: 2.4rem;
+    padding: 1.5rem 2.4rem;
     border-radius: 0.8rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1.6rem;
-    width: 80%;
+    width: 75%;
     max-width: 400px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -187,6 +194,15 @@ body {
     border-radius: 0.4rem;
 }
 
+#text-link-register{
+    align-self: center;
+}
+
+/* Utilidades */
+.hidden {
+    display: none !important;
+}
+
 @media (max-width: 480px) {
     body {
         padding: 10px;
@@ -196,6 +212,17 @@ body {
         flex-direction: column; /* Input arriba, botón abajo si es muy estrecho */
         gap: 10px;
     }
+
+    #div-inputTask{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #message-error {
+        margin-top: 0;
+    }
+
+
     
     #btnAgregar {
         width: 100%; /* Botón ancho para que sea fácil tocar con el dedo */

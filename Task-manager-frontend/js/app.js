@@ -2,6 +2,7 @@ import {cargarTareas, actualizarVista, refresh} from "./ui.js"
 import {initEvents} from "./events.js"
 
 const DOM ={
+    registerForm: document.querySelector('#register-form'),
     buttonAll: document.getElementById("buttonAll"),
     buttonPending:document.getElementById("buttonPending"),
     buttonCompleted:document.getElementById("buttonCompleted"),    
@@ -12,7 +13,11 @@ const DOM ={
     error: document.getElementById("message-error"),
     authForm: document.querySelector('#auth-form'),
     authModal: document.querySelector('#auth-modal'),
-    appContent: document.querySelector('#app-content')
+    appContent: document.querySelector('#app-content'),
+    loginContainer : document.getElementById('login-container'),
+    registerContainer : document.getElementById('register-container'),
+    linkToRegister : document.getElementById('link-to-register'),
+    linkToLogin : document.getElementById('link-to-login')
 };
 
 
