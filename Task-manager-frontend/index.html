@@ -23,27 +23,15 @@
         </div>
     </div>
 
-    <main id="main">
+    <!-- CONTENEDOR PRINCIPAL CON LA CLASE BLURRED DE ENTRADA -->
+    <div id="app-content" class="blurred">
+        <main id="main">
             <div id="insert-data">
                 <div id="div-inputTask">
                     <input id="inputTarea" placeholder="Nueva tarea // vencimiento (dd-mm-aaaa)">
-                    <button id="btnAgregar" class = "buttons">Agregar</button>
+                    <button id="btnAgregar" class="buttons">Agregar</button>
                 </div>
                 <p id="message-error"></p>        
-            </div>
-        <div id="div-filters">
-            <button id="buttonAll" class="filter-btn buttons">Todas</button>
-            <button id="buttonPending" class="filter-btn buttons">Pendientes</button>
-            <button id="buttonCompleted" class="filter-btn buttons">Completadas</button>
-        </div>
-        <div id="list-data">
-            <ul id="lista"></ul>
-        </div>
-
-        <main id="main">
-            <div id="insert-data">
-                <input id="inputTarea" placeholder="Nueva tarea // vencimiento (dd-mm-aaaa)">
-                <button id="btnAgregar" class="buttons">Agregar</button>
             </div>
             <div id="div-filters">
                 <button id="buttonAll" class="filter-btn buttons">Todas</button>
@@ -55,6 +43,7 @@
             </div>
         </main>
     </div>
+
 </body>
 <script type="module" src="./js/app.js"></script>
 

@@ -15,8 +15,7 @@ const DOM ={
 const authForm = document.querySelector('#auth-form');
 const authModal = document.querySelector('#auth-modal');
 const appContent = document.querySelector('#app-content');
-const togglePasswordBtn = document.querySelector('#togglePassword');
-const inputPassword = document.querySelector('#inputPassword');
+
 
 authForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Evita que se recargue la página
@@ -30,14 +29,6 @@ authForm.addEventListener('submit', (e) => {
     appContent.classList.remove('blurred');
 });
 
-togglePasswordBtn.addEventListener('click', () => {
-    // Si es tipo password, lo cambiamos a text; si no, a password
-    const type = inputPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-    inputPassword.setAttribute('type', type);
-
-    // Cambiamos el ícono según corresponda (👁️ para ver, 🙈 para ocultar)
-    togglePasswordBtn.textContent = type === 'password' ? '👁️' : '🙈';
-});
 
 cargarTareas(DOM);
 initEvents(DOM);
