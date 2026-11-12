@@ -39,3 +39,9 @@ export const loginUserService = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   return { data, error };
 };
+
+export const getUserService = async (token) => {
+  const { data: { user }, error } = await supabase.auth.getUser(token);
+  if (error) throw new Error(error.message);
+  return user;
+};

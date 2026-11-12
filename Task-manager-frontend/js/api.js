@@ -1,17 +1,17 @@
 // api.js
-const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
-// const API_URL = "http://localhost:3000"; // o localhost
+//const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
+const API_URL = "http://localhost:3000"; // o localhost
 
 export const getTasks= async() => {
     const res = await fetch(`${API_URL}/tasks`);
     return res.json();
 };
 
-export async function createTask(texto) {
+export async function createTask(texto, dataUser) {
     const res = await fetch(`${API_URL}/tasks/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto })
+        body: JSON.stringify({ texto, dataUser })
     });
     return res.json();
 }
@@ -100,3 +100,27 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const getUser = async (token) => {
+  try {
+    const response = await fetch(`${API_URL}/api/auth/getUser`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    const data = await response.json();
+
+    console.log("Respuesta del servidor al obtener el usuario:", data);
+
+    if (!response.ok) {
+      throw new Error(data.message || "Error al obtener los datos del usuario");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error al obtener los datos del usuario:", error);
+    throw error;
+  }
+};

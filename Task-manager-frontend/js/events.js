@@ -25,6 +25,7 @@ export function initEvents(DOM) {
         DOM.loginContainer.classList.add("hidden");
         DOM.authModal.style.display = "none";
         DOM.appContent.classList.remove("blurred");
+        DOM.tittleHeader.textContent = `Hola ${res.user.name || res.user.email} 👋!`;
       }, 3000);
     } else {
       mostrarError(res.error || "Error desconocido al iniciar sesión");
@@ -78,10 +79,14 @@ export function initEvents(DOM) {
   });
 
   DOM.buttonAgregar.addEventListener("click", async () => {
+
+    const token = localStorage.getItem("token");
+    const user = token ? JSON.parse(token).user : null;
+
     // Acá manejás la lógica de agregar o actualizar
     if (DOM.buttonAgregar.textContent === "Agregar") {
       if (DOM.inputTareas.value.trim() !== "") {
-        const res = await api.createTask(DOM.inputTareas.value);
+        const res = await api.createTask(DOM.inputTareas.value, user);
         console.log(res); // DARLE FORMA AL MENSAJE DE ERROR
 
         if (res.ok) {

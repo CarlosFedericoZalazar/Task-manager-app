@@ -198,6 +198,12 @@ body {
     align-self: center;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Utilidades */
 .hidden {
     display: none !important;

@@ -1,7 +1,7 @@
-import {cargarTareas, actualizarVista, refresh} from "./ui.js"
-import {initEvents} from "./events.js"
+import {initApp} from "./main.js";
 
 const DOM ={
+    tittleHeader: document.getElementById("title-header"),
     registerForm: document.getElementById('register-form'),
     regName: document.getElementById('regName'),
     regEmail: document.getElementById('regEmail'),
@@ -27,9 +27,7 @@ const DOM ={
     linkToLogin : document.getElementById('link-to-login')
 };
 
-
-cargarTareas(DOM);
-initEvents(DOM);
+initApp(DOM);
 
 
 
