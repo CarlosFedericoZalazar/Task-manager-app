@@ -31,8 +31,18 @@ export function initEvents(DOM) {
     }
   });
 
+  DOM.checkLoginPassword.addEventListener("change", ()=>{
+    console.log("check pass")
+    DOM.loginPassword.type = DOM.loginPassword.type == "password" ? "text" : "password";
+  })
+
+  DOM.checkLoginRegister.addEventListener("change", ()=>{
+    console.log("check pass")
+    DOM.regPassword.type = DOM.regPassword.type == "password" ? "text" : "password";
+  })
+
   DOM.registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evita que se recargue la página
+    e.preventDefault(); 
 
     const usuario = {
       name: DOM.regName.value,
