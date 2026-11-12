@@ -6,18 +6,53 @@ import {
   setcurrentFilter,
 } from "./ui.js";
 import * as api from "./api.js";
+import { mostrarError, mostrarExito } from "./notificaciones.js";
 
 export function initEvents(DOM) {
-  DOM.authForm.addEventListener("submit", (e) => {
+  DOM.authForm.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita que se recargue la página
 
-    // LÓGICA VALIDACION
+    const email = DOM.loginEmail.value;
+    const password = DOM.loginPassword.value;
 
-    // ocultamos modal
-    DOM.authModal.style.display = "none";
+    const res = await api.loginUser(email, password);
 
-    // quitamos blureo
-    DOM.appContent.classList.remove("blurred");
+    console.log("Respuesta del login:", res);
+    
+    if (res.ok) {
+      mostrarExito(res.message);
+      setTimeout(() => {
+        DOM.loginContainer.classList.add("hidden");
+        DOM.authModal.style.display = "none";
+        DOM.appContent.classList.remove("blurred");
+      }, 3000);
+    } else {
+      mostrarError(res.error || "Error desconocido al iniciar sesión");
+    }
+  });
+
+  DOM.registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita que se recargue la página
+
+    const usuario = {
+      name: DOM.regName.value,
+      email: DOM.regEmail.value,
+      password: DOM.regPassword.value,
+    };
+
+    const res = await api.registrarUsuario(usuario);
+    
+    if (res.ok) {
+      mostrarExito(res.message); 
+
+      setTimeout(() => {
+          DOM.registerContainer.classList.add("hidden");
+          DOM.loginContainer.classList.remove("hidden");
+      }, 3000);
+    } else {
+      console.error("MENSAJE! Error al registrar el usuario:", res.error);
+      mostrarError(res.error || "Error desconocido al registrar el usuario");
+    }
   });
 
   DOM.linkToRegister.addEventListener("click", (e) => {
