@@ -12,9 +12,12 @@ body {
     padding: 20px;
 }
 
-#header{
+#header {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
 }
 
 #main {
@@ -32,10 +35,16 @@ body {
     letter-spacing: -0.5px;
 }
 
-#text-pending{
-    padding-top: 2rem;
+#section-pending {
+    display: flex;    
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    padding: 0 0.2rem;
 }
-
 
 /* Contenedor del Input (Efecto Card) */
 #insert-data {
@@ -207,6 +216,47 @@ body {
 /* Utilidades */
 .hidden {
     display: none !important;
+}
+
+/* avatar */
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #fae1cd; /* Un tono cálido como el de tu diseño */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b86b35; /* Borde más oscuro para resaltar */
+}
+
+.avatar span {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #b86b35; /* Color del texto acorde al fondo */
+}
+
+#section-logoNameOut {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+#section-pending {
+    justify-content: space-between; /* Los separa a los extremos */
+}
+
+/* Asegurar que los párrafos no traigan márgenes predeterminados que rompan la línea */
+#section-pending p {
+    margin: 0; 
+}
+.text-infoTasks {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1E293B; /* Color del texto */
 }
 
 @media (max-width: 480px) {

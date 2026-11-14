@@ -1,7 +1,8 @@
 import {initApp} from "./main.js";
 
 const DOM ={
-    tittleHeader: document.getElementById("title-header"),
+    tittleHeader: document.getElementById("user-name"),
+    textTaskHeader: document.getElementById("task-of"),
     registerForm: document.getElementById('register-form'),
     regName: document.getElementById('regName'),
     regEmail: document.getElementById('regEmail'),
@@ -15,6 +16,7 @@ const DOM ={
     buttonCompleted:document.getElementById("buttonCompleted"),    
     textPending: document.getElementById("text-pending"),    
     buttonAgregar: document.getElementById("btnAgregar"),
+    btnLogout: document.getElementById("btnLogout"),
     inputTareas: document.getElementById("inputTarea"),
     lista: document.getElementById("lista"),
     error: document.getElementById("message-error"),

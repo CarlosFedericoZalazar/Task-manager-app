@@ -21,7 +21,7 @@
                 <form id="auth-form">
                     <input type="email" id="inputEmail" placeholder="Correo electrónico" required>
                     <input type="password" id="inputPassword" placeholder="Contraseña" required>
-                    <div class = "checkbox-container">
+                    <div class="checkbox-container">
                         <input type="checkbox" id="checkPassLogin"><span>Mostrar contraseña</span>
                     </div>
                     <button type="submit" id="btnLogin" class="buttons">Acceder</button>
@@ -36,7 +36,7 @@
                     <input type="text" id="regName" placeholder="Nombre completo" required>
                     <input type="email" id="regEmail" placeholder="Correo electrónico" required>
                     <input type="password" id="regPassword" placeholder="Contraseña" required>
-                    <div class = "checkbox-container">
+                    <div class="checkbox-container">
                         <input type="checkbox" id="checkPassRegister"><span>Mostrar contraseña</span>
                     </div>
                     <button type="submit" id="btnRegister" class="buttons">Registrarse</button>
@@ -48,8 +48,23 @@
 
     <div id="app-content" class="blurred">
         <header id="header">
-            <h1 id="title-header">MIS TAREAS</h1>
-            <span id="text-pending">Pendientes 0/0</span>
+            <section id="section-logoNameOut">
+                <div class="avatar">
+                    <span>T</span>
+                </div>
+                <div>
+                    <h1 id="user-name">Usuario</h1>
+                    <p id="task-of">Tareas</p>
+                </div>
+                <div>
+                    <button id="btnLogout" class="buttons">Cerrar sesión</button>
+                </div>
+            </section>
+            <!-- <span id="text-pending">Pendientes 0/0</span> -->
+            <section id="section-pending">
+               <p id="text-total" class="text-infoTasks">Total: 0</p>
+               <p  id="text-pending" class="text-infoTasks">Pendientes: 0</p>
+            </section>
         </header>
         <main id="main">
             <div id="insert-data">
@@ -57,7 +72,7 @@
                     <input id="inputTarea" placeholder="Nueva tarea // vencimiento (dd-mm-aaaa)">
                     <button id="btnAgregar" class="buttons">Agregar</button>
                 </div>
-                <p id="message-error"></p>        
+                <p id="message-error"></p>
             </div>
             <div id="div-filters">
                 <button id="buttonAll" class="filter-btn buttons">Todas</button>
