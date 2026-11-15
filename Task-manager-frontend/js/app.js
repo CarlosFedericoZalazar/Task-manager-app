@@ -15,6 +15,7 @@ const DOM ={
     buttonPending:document.getElementById("buttonPending"),
     buttonCompleted:document.getElementById("buttonCompleted"),    
     textPending: document.getElementById("text-pending"),    
+    textTotal: document.getElementById("text-total"),    
     buttonAgregar: document.getElementById("btnAgregar"),
     btnLogout: document.getElementById("btnLogout"),
     inputTareas: document.getElementById("inputTarea"),

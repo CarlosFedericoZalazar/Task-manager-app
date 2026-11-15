@@ -21,7 +21,7 @@ export const cargarTareas = async (DOM) => {
     tareas = res.data;
 
     if (DOM.textPending) {
-        writeTextPending(DOM.textPending);
+        writeTextPending(DOM);
     }
     actualizarVista(DOM);
 };
@@ -54,10 +54,11 @@ export const actualizarVista = (DOM) => {
     });
 };
 
-export const writeTextPending = (textPending)=>{
+export const writeTextPending = (DOM)=>{
     let incompletas = tareas.filter(t => !t.completada).length;
     let total = tareas.length;    
-    textPending.textContent = `Pendientes ${incompletas}/${total}`;
+    DOM.textPending.textContent = `Pendientes ${incompletas}`;
+    DOM.textTotal.textContent = `Total ${total}`;
 };
 
 export const refresh = async (DOM)=>{

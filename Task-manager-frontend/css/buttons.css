@@ -1,0 +1,38 @@
+/* Botones */
+.buttons {
+    background-color: #6366F1;
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.buttons:hover {
+    background-color: #4F46E5;
+    color: white;
+}
+
+.done{
+    text-decoration: line-through;
+}
+
+.filter-btn {
+    background-color: #E2E8F0;
+    color: #64748B;
+    font-size: 0.9rem;
+}
+
+.filter-btn.active {
+    background-color: #6366F1;
+    color: white;
+}
+
+
+@media (max-width: 480px) {
+    #btnAgregar {
+        width: 100%; 
+    }
+}

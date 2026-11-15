@@ -1,0 +1,105 @@
+/* Configuración General */
+html{
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #ebf0f4;
+    font-family: 'Inter', sans-serif; /* Mucho más moderna */
+    color: #1E293B;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+}
+
+main {
+    width: 100%;           
+    max-width: 600px;      
+    margin: 0 auto;       
+    display: flex;
+    flex-direction: column;
+}
+
+#section-pending {
+    display: flex;    
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    padding: 0 0.2rem;
+}
+
+/* Contenedor del Input (Efecto Card) */
+#insert-data {
+    display: flex;
+    flex-direction: column;    
+    background: white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave */
+    margin-bottom: 20px;
+}
+
+#div-inputTask{
+    display: flex;
+}
+/* error de ingreso de datos */
+#message-error {
+    margin: 0;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    height: 1.5rem; 
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+    color: rgb(228, 74, 74);
+    text-shadow: #1E293B 1px;    
+    transition: opacity 0.2s ease;
+}
+
+/* Filtros*/
+#div-filters {
+    margin-bottom: 0.1rem;
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    #insert-data {
+        flex-direction: column; /* Input arriba, botón abajo si es muy estrecho */
+        gap: 10px;
+    }
+
+    #div-inputTask{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #message-error {
+        margin-top: 0;
+    }
+
+        #div-filters {
+        justify-content: center; /* Centra los filtros en móvil */
+        flex-wrap: wrap;         /* Si no caben, que bajen a la siguiente línea */
+    }
+}

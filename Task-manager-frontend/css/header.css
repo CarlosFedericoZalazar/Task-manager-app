@@ -1,0 +1,66 @@
+/* avatar */
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #fae1cd; /* Un tono cálido como el de tu diseño */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b86b35; /* Borde más oscuro para resaltar */
+}
+
+.avatar span {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #b86b35; /* Color del texto acorde al fondo */
+}
+
+#section-logoNameOut {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+/* Contenedor que agrupa las dos cajas de métricas */
+#section-pending {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Estilo base para ambas cajitas (Total y Pendientes) */
+.text-infoTasks {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    background-color: #f8fafc; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 8px;        
+    padding: 0.5rem 1rem;      
+    flex: 1;                   /* ambas cajas ocupen el mismo ancho */
+    text-align: center;        
+    width: auto;
+}
+
+#text-pending {
+    background-color: #fffaf5; 
+    border-color: #f3d0b3;     
+    color: #9a5423;           
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  #section-pending {
+        flex-direction: column;
+    }
+    
+    .text-infoTasks {
+        width: 100%;
+    }
+
+}

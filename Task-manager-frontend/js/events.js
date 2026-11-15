@@ -101,7 +101,7 @@ export function initEvents(DOM) {
     const token = localStorage.getItem("token");
     const user = token ? JSON.parse(token).user : null;
 
-    // Acá manejás la lógica de agregar o actualizar
+    // logica agregar y actualizar
     if (DOM.buttonAgregar.textContent === "Agregar") {
       if (DOM.inputTareas.value.trim() !== "") {
         const res = await api.createTask(DOM.inputTareas.value, user);
