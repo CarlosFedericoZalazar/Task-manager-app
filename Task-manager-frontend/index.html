@@ -60,7 +60,6 @@
                     <button id="btnLogout" class="buttons">Cerrar sesión</button>
                 </div>
             </section>
-            <!-- <span id="text-pending">Pendientes 0/0</span> -->
             <section id="section-pending">
                <p id="text-total" class="text-infoTasks">Total: 0</p>
                <p  id="text-pending" class="text-infoTasks">Pendientes: 0</p>
@@ -72,7 +71,13 @@
                     <input id="inputTarea" placeholder="Nueva tarea // vencimiento (dd-mm-aaaa)">
                     <button id="btnAgregar" class="buttons">Agregar</button>
                 </div>
-                <p id="message-error"></p>
+                <div id="div-inputDate">
+                    <label for="inputDate">Fecha de vencimiento:</label>
+                    <input type="date" id="inputDate">
+                    <input type="checkbox" id="noDateCheckbox">
+                    <label for="noDateCheckbox">Sin vencimiento</label>
+                </div>
+                <!-- <p id="message-error"></p> -->
             </div>
             <div id="div-filters">
                 <button id="buttonAll" class="filter-btn buttons">Todas</button>

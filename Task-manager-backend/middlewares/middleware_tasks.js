@@ -1,24 +1,23 @@
 import { getTasksService } from "../services/taskService.js";
 
-export const getDate = async (req, res, next) => {
+export const validateDate = async (req, res, next) => {
     try {
-        const { texto } = req.body;
-        console.log(texto);
+        const { texto, fechaVencimiento } = req.body;
+        console.log(texto, fechaVencimiento);
 
-        // Cambiamos 'include' por 'includes'
-        if (texto && texto.includes("//")) {
-            console.log("Formato Valido");
-            next();
-        } else {
-            console.log("Formato Invalido");
-            // Es importante responder al cliente para que la petición no quede colgada
-            return res.status(400).json({ error: "Formato inválido. Debe incluir '//'." });
-        } 
+        const dateNow = new Date();
+        const inputDate = new Date(fechaVencimiento);
+
+        if (inputDate < dateNow) {
+            console.log("Middleware: fecha de vencimiento inválida.");
+            return res.status(400).json({ error: "La fecha de vencimiento no puede ser anterior a la fecha actual." });
+        }
+        console.log("Middleware: fecha de vencimiento válida.");
+        next();
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ error: "Error interno del servidor." });
     }
-}
+};
 
 export const normalizeData = async (req, res, next) => {
     try {

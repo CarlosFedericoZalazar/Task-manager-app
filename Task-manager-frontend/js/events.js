@@ -99,21 +99,22 @@ export function initEvents(DOM) {
   DOM.buttonAgregar.addEventListener("click", async () => {
 
     const token = localStorage.getItem("token");
-    const user = token ? JSON.parse(token).user : null;
+    const data = await api.getUser(token); // Obtener el usuario actual usando el token
 
     // logica agregar y actualizar
     if (DOM.buttonAgregar.textContent === "Agregar") {
       if (DOM.inputTareas.value.trim() !== "") {
-        const res = await api.createTask(DOM.inputTareas.value, user);
+        const res = await api.createTask(DOM.inputTareas.value, DOM.inputDate.value, data.user.id);
         console.log(res); // DARLE FORMA AL MENSAJE DE ERROR
 
-        if (res.ok) {
-          DOM.error.textContent = " ";
-        } else {
-          DOM.error.textContent = res.error;
-        }
+        // if (res.ok) {
+        //   DOM.error.textContent = " ";
+        // } else {
+        //   DOM.error.textContent = res.error;
+        // }
         cargarTareas(DOM);
         DOM.inputTareas.value = "";
+        DOM.inputDate.value = new Date().toISOString().split("T")[0]; // Reinicia la fecha al valor por defecto
       }
     } else {
       const editingId = getEditingId();

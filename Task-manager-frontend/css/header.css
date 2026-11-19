@@ -54,6 +54,13 @@
     font-weight: 600;
 }
 
+#div-inputDate {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 0.6rem;
+    margin-top: 0.5rem;
+}
+
 @media (max-width: 480px) {
   #section-pending {
         flex-direction: column;

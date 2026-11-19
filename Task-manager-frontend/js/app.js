@@ -11,6 +11,8 @@ const DOM ={
     loginEmail: document.getElementById('inputEmail'),
     loginPassword: document.getElementById('inputPassword'),
     checkLoginPassword: document.getElementById('checkPassLogin'),
+    inputDate: document.getElementById('inputDate'),
+    noDateCheckbox: document.getElementById('noDateCheckbox'),
     buttonAll: document.getElementById("buttonAll"),
     buttonPending:document.getElementById("buttonPending"),
     buttonCompleted:document.getElementById("buttonCompleted"),    
@@ -31,6 +33,7 @@ const DOM ={
 };
 
 initApp(DOM);
+
 
 
 

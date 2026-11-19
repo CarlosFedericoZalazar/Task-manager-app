@@ -2,16 +2,18 @@
 const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
 //const API_URL = "http://localhost:3000"; // o localhost
 
-export const getTasks= async() => {
-    const res = await fetch(`${API_URL}/tasks`);
+
+export const getTasks= async(userId) => {
+    
+    const res = await fetch(`${API_URL}/tasks?userId=${userId}`);
     return res.json();
 };
 
-export async function createTask(texto, dataUser) {
+export async function createTask(texto, fechaVencimiento, dataUserId) {
     const res = await fetch(`${API_URL}/tasks/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto, dataUser })
+        body: JSON.stringify({ texto, fechaVencimiento, dataUserId })
     });
     return res.json();
 }

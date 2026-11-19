@@ -36,8 +36,8 @@ export const deleteTask = async (req, res) => {
 
 export const postNewTask = async (req, res) => {
     try {
-        const { texto } = req.body;
-        const data = await postTaskService(texto);
+        const { texto, fechaVencimiento, dataUserId } = req.body;
+        const data = await postTaskService(texto, fechaVencimiento, dataUserId);
 
         res.status(201).json({ ok: true, data });
 

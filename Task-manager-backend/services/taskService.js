@@ -22,12 +22,14 @@ export async function deleteTaskService(id) {
     return data;
 }
 
-export async function postTaskService(texto){
+export async function postTaskService(texto, fechaVencimiento, dataUserId){
     const { data, error } = await supabase
         .from("tasks")
         .insert([
             {
                 texto,
+                fecha_vencimiento: fechaVencimiento,
+                user_id: dataUserId, // Asegúrate de que dataUser tenga la propiedad id
                 completada: false
             }
         ])
