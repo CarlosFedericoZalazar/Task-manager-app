@@ -8,18 +8,20 @@ import {
 } from "../controllers/task_controller.js";
 
 import { normalizeData, validateDate } from "../middlewares/middleware_tasks.js";
+import { authMiddleware } from "../middlewares/middleware_auth.js";
 import { validateId } from "../middlewares/validateId.js";
+
 
 const router = express.Router();
 
-router.get("/", getAllTask);
+router.get("/", authMiddleware, getAllTask);
 
-router.post("/", normalizeData, validateDate, postNewTask);
+router.post("/", authMiddleware, validateDate, normalizeData, postNewTask);
 
-router.put("/:id", validateId, normalizeData, modifyTaskById);
+router.put("/:id", authMiddleware, validateId, normalizeData, modifyTaskById);
 
-router.put("/:id/toggle", validateId, toggleTask);
+router.put("/:id/toggle", authMiddleware, validateId, toggleTask);
 
-router.delete("/:id", validateId, deleteTask);
+router.delete("/:id", authMiddleware, validateId, deleteTask);
 
 export default router;

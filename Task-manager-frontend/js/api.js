@@ -1,52 +1,64 @@
 // api.js
 const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
-//const API_URL = "http://localhost:3000"; // o localhost
+//const API_URL = "http://localhost:3001"; // o localhost
 
-
-export const getTasks= async(userId) => {
-    
-    const res = await fetch(`${API_URL}/tasks?userId=${userId}`);
-    return res.json();
+const getAuthHeaders = () => {
+  const token = localStorage.getItem("token");
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+  };
 };
 
-export async function createTask(texto, fechaVencimiento, dataUserId) {
-    const res = await fetch(`${API_URL}/tasks/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto, fechaVencimiento, dataUserId })
-    });
-    return res.json();
+export const getTasks = async () => {
+  const res = await fetch(`${API_URL}/tasks`, {
+    headers: getAuthHeaders()
+  });
+  return res.json();
+};
+
+export async function createTask(texto, fechaVencimiento) {
+  console.log(`Create Task Fecha Vencimiento: ${fechaVencimiento} - Texto: ${texto}`);  
+  const res = await fetch(`${API_URL}/tasks`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ 
+      texto, 
+      fechaVencimiento: fechaVencimiento || null 
+    })
+  });
+  return res.json();
 }
 
-export const toggleTask = async(id) => {
-    const res = await fetch(`${API_URL}/tasks/${id}/toggle`, {
-        method: "PUT"
-    });
-    return res.json();
+export const toggleTask = async (id) => {
+  const res = await fetch(`${API_URL}/tasks/${id}/toggle`, {
+    method: "PUT",
+    headers: getAuthHeaders()
+  });
+  return res.json();
 };
 
 export const deleteTask = async (id) => {
-    const res = await fetch(`${API_URL}/tasks/${id}`, {
-        method: "DELETE"
-    });
-    return res.json();
+  const res = await fetch(`${API_URL}/tasks/${id}`, {
+    method: "DELETE",
+    headers: getAuthHeaders()
+  });
+  return res.json();
 };
 
 export async function updateTask(id, updates) {
-    const res = await fetch(`${API_URL}/tasks/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updates)
-    });
+  const res = await fetch(`${API_URL}/tasks/${id}`, {
+    method: "PUT",
+    headers: getAuthHeaders(),
+    body: JSON.stringify(updates)
+  });
 
-    if (!res.ok) {
-        const err = await res.text();
-        throw new Error(err);
-    }
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
 
-    return res.json();
+  return res.json();
 }
 
 // usuario
@@ -113,8 +125,6 @@ export const getUser = async (token) => {
     });
 
     const data = await response.json();
-
-    console.log("Respuesta del servidor al obtener el usuario:", data);
 
     if (!response.ok) {
       throw new Error(data.message || "Error al obtener los datos del usuario");

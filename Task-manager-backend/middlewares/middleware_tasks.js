@@ -5,6 +5,11 @@ export const validateDate = async (req, res, next) => {
         const { texto, fechaVencimiento } = req.body;
         console.log(texto, fechaVencimiento);
 
+        if (!fechaVencimiento) {
+            console.log("Middleware: fecha de vencimiento no proporcionada.");
+            return next();
+        }
+
         const dateNow = new Date();
         const inputDate = new Date(fechaVencimiento);
 
@@ -20,9 +25,13 @@ export const validateDate = async (req, res, next) => {
 };
 
 export const normalizeData = async (req, res, next) => {
+    const idUser = req.user?.id;
     try {
-        const tasks = await getTasksService();
+        console.log(`Usuario Normalize Data: ${idUser}`);
+        const tasks = await getTasksService(idUser);
+        const fechaVencimiento = req.body.fechaVencimiento;
 
+        console.log(tasks);
         // Normalizar texto
         const texto = typeof req.body.texto === "string"
             ? req.body.texto.trim().toUpperCase()
@@ -33,7 +42,7 @@ export const normalizeData = async (req, res, next) => {
         }
 
         const taskExistente = tasks.find(
-            t => t.texto.toUpperCase() === texto
+            t => t.texto.toUpperCase() === texto && t.fecha_vencimiento === fechaVencimiento
         );
 
         if (taskExistente) {

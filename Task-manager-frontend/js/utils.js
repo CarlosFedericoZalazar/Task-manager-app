@@ -8,13 +8,19 @@ export const dateHandler = (DOM) => {
 
     // Asigno valor minimo y valor por defecto al input de fecha
     DOM.inputDate.min = hoy;
+    DOM.noDateCheckbox.checked = true; // Marcar el checkbox como marcado por defecto
 
-    DOM.inputDate.value = hoy; // Valor por defecto al cargar la página
+    DOM.inputDate.addEventListener("keydown", (e) => {
+        // Permite Tab, Escape o Enter, pero bloquea dígitos y borrado
+        if (!["Tab", "Escape", "Enter"].includes(e.key)) {
+        e.preventDefault();
+    }
+    });
 
     DOM.inputDate.addEventListener("change", function () {
-    const fechaSeleccionada = DOM.inputDate.value;
-    console.log("Fecha seleccionada:", fechaSeleccionada);
-    DOM.noDateCheckbox.checked = false; // Desmarca el checkbox si se selecciona una fecha
+        const fechaSeleccionada = DOM.inputDate.value;
+        console.log("Fecha seleccionada:", fechaSeleccionada);
+        DOM.noDateCheckbox.checked = false; // Desmarca el checkbox si se selecciona una fecha
 }); 
 
     DOM.noDateCheckbox.addEventListener("change", function () {

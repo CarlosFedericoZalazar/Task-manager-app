@@ -1,8 +1,8 @@
 import {getTasksService, deleteTaskService, postTaskService, modifyTaskByIdService, toggleTaskService } from "../services/taskService.js"
-
 export const getAllTask = async (req, res) => {
+    const userId = req.user?.id;    
     try {
-        const data = await getTasksService();
+        const data = await getTasksService(userId);
 
         res.json({ ok: true, data });
 
@@ -16,8 +16,9 @@ export const getAllTask = async (req, res) => {
 
 export const deleteTask = async (req, res) => {
     try {
-        const { id } = req.params;
-        const data = await deleteTaskService(id);
+        const id = req.params.id;
+        const userId = req.user?.id;
+        const data = await deleteTaskService(userId, id);
 
         if (!data || data.length === 0) {
             return res.status(404).json({ ok: false, message: "Tarea no encontrada" });
@@ -35,26 +36,29 @@ export const deleteTask = async (req, res) => {
 };
 
 export const postNewTask = async (req, res) => {
-    try {
-        const { texto, fechaVencimiento, dataUserId } = req.body;
-        const data = await postTaskService(texto, fechaVencimiento, dataUserId);
+    console.log("LLegamos a post newTask");
+  try {
+    const { texto, fechaVencimiento } = req.body;
+    const userId = req.user?.id; 
 
-        res.status(201).json({ ok: true, data });
+    const data = await postTaskService(texto, fechaVencimiento, userId);
 
-    } catch (error) {
-        res.status(500).json({
-            ok: false,
-            message: error.message
-        });
-    }
+    res.status(201).json({ ok: true, data });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: error.message,
+    });
+  }
 };
 
-export const modifyTaskById = async (req, res) => {
+export const modifyTaskById = async (req, res) => {    
     try {
-        const { id } = req.params;
+        const id = req.params.id;
+        const userId = req.user?.id; 
         const { texto } = req.body;
 
-        const data = await modifyTaskByIdService(id, texto);
+        const data = await modifyTaskByIdService(userId, id, texto);
 
         if (!data) {
             return res.status(404).json({ ok: false, message: "Tarea no encontrada" });
@@ -71,10 +75,10 @@ export const modifyTaskById = async (req, res) => {
 };
 
 export const toggleTask = async (req, res) => {
+    const id = req.params.id;
+    const userId = req.user?.id;
     try {
-        const { id } = req.params;
-
-        const data = await toggleTaskService(id);
+        const data = await toggleTaskService(userId, id);
 
         res.json({ ok: true, message: "Tarea actualizada", data });
 

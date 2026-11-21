@@ -9,6 +9,7 @@ import * as api from "./api.js";
 import { mostrarError, mostrarExito } from "./notificaciones.js";
 
 export function initEvents(DOM) {
+
   DOM.authForm.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita que se recargue la página
 
@@ -21,12 +22,13 @@ export function initEvents(DOM) {
     
     if (res.ok) {
       mostrarExito(res.message);
-      setTimeout(() => {
+      setTimeout(async () => {
         DOM.loginContainer.classList.add("hidden");
         DOM.authModal.style.display = "none";
         DOM.appContent.classList.remove("blurred");
         DOM.tittleHeader.textContent = `${res.user.name || res.user.email} 👋!`;
         DOM.textTaskHeader.textContent = `Tareas de ${res.user.name || res.user.email}`;
+        await cargarTareas(DOM);
       }, 3000);
     } else {
       mostrarError(res.error || "Error desconocido al iniciar sesión");
@@ -36,17 +38,16 @@ export function initEvents(DOM) {
   DOM.btnLogout.addEventListener("click", () => {
     localStorage.removeItem("token");
     DOM.tittleHeader.textContent = "Task Manager";
+    DOM.textTaskHeader.textContent = "";
+    DOM.lista.innerHTML = "";
+    setEditingId(undefined);
+    setcurrentFilter("all");
     DOM.authForm.reset();
-    
-    // 1. Asegurar que se muestre el contenedor de inicio de sesión y se oculte el de registro
+
     DOM.loginContainer.classList.remove("hidden");
     DOM.registerContainer.classList.add("hidden");
-    
-    // 2. Volver a mostrar el modal general (quitando el display: none que se aplicó en el login)
     DOM.authModal.style.display = "flex";
     DOM.authModal.classList.remove("hidden");
-    
-    // 3. Volver a aplicar el efecto borroso al contenido de la app
     DOM.appContent.classList.add("blurred");
   });
 
@@ -97,24 +98,17 @@ export function initEvents(DOM) {
   });
 
   DOM.buttonAgregar.addEventListener("click", async () => {
-
-    const token = localStorage.getItem("token");
-    const data = await api.getUser(token); // Obtener el usuario actual usando el token
-
     // logica agregar y actualizar
     if (DOM.buttonAgregar.textContent === "Agregar") {
       if (DOM.inputTareas.value.trim() !== "") {
-        const res = await api.createTask(DOM.inputTareas.value, DOM.inputDate.value, data.user.id);
-        console.log(res); // DARLE FORMA AL MENSAJE DE ERROR
+        console.log(`mandamos ${DOM.inputTareas.value} y  ${DOM.inputDate.value}`);
+        // Directo al grano: solo texto y fecha. El token viaja solo en api.js
+        const res = await api.createTask(DOM.inputTareas.value, DOM.inputDate.value);
+        console.log(res);
 
-        // if (res.ok) {
-        //   DOM.error.textContent = " ";
-        // } else {
-        //   DOM.error.textContent = res.error;
-        // }
         cargarTareas(DOM);
         DOM.inputTareas.value = "";
-        DOM.inputDate.value = new Date().toISOString().split("T")[0]; // Reinicia la fecha al valor por defecto
+        DOM.inputDate.value = new Date().toISOString().split("T")[0];
       }
     } else {
       const editingId = getEditingId();
@@ -145,7 +139,7 @@ export function initEvents(DOM) {
   DOM.buttonCompleted.addEventListener("click", () => {
     resetBtnFilters(DOM);
     setcurrentFilter("completed");
-    buttonCompleted.classList.add("active");
+    DOM.buttonCompleted.classList.add("active");
     actualizarVista(DOM);
   });
 }
