@@ -11,9 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-console.log("hasta aca llego");
+
 // 👇 tus rutas recién acá
 app.use('/tasks', taskRoutes);
 app.use("/api/auth", authRoutes);
 
-app.listen(3001, () => console.log("Server running on port 3000"));
+app.listen(3000, () => console.log("Server running on port 3000"));

@@ -19,4 +19,9 @@ export const initApp = async (DOM) => {
   }
 
   initEvents(DOM);
+  const botonBorrarStorage = document.getElementById("btnBorrarStorage");
+  botonBorrarStorage.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    location.reload();
+  });
 };

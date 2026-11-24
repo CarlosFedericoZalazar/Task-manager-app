@@ -1,23 +1,80 @@
 /* La Lista de Tareas */
 #lista {
-    justify-self: center;
     list-style: none;
     padding: 0;
+    margin: 0 auto;
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
 }
 
 .task-item {
-    background: white;
+    background: rgba(255, 255, 255, 0.75); /* Contraste suave acorde al fondo */
     margin-bottom: 12px;
     padding: 15px;
     border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+.task-top,
+.task-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    gap: 10px;
 }
 
 .texto:hover {
     cursor: pointer;
+}
+
+/* Pill de vencimiento */
+.task-due {
+    font-size: 0.9rem;
+    background-color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: #1e293b;
+}
+
+/* Estado a la derecha */
+.task-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-vigente {
+    color: #16a34a;
+}
+
+.status-por-vencer {
+    color: #d97706;
+}
+
+.status-vencido {
+    color: #dc2626;
+}
+
+/* Destacado para tareas vencidas */
+.task-vencida {
+    border: 1px solid rgba(220, 38, 38, 0.45);
+}
+
+.task-title-vencida {
+    font-weight: 700;
+}
+
+/* Botones de acción */
+.div-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }

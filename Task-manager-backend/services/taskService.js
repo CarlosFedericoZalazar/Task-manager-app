@@ -1,13 +1,19 @@
 import { supabase } from "../db/supabase.js";
+import { calcularDiasRestantes } from "../utils/utils_date.js";
 
 export async function getTasksService(userId) {
-    const { data, error } = await supabase
-        .from("tasks")
-        .select("*")
-        .eq("user_id", userId)
-        .order("id", { ascending: false }); 
-    if (error) throw error;
-    return data;
+  const { data, error } = await supabase
+    .from("tasks")
+    .select("*")
+    .eq("user_id", userId)
+    .order("id", { ascending: false });
+
+  if (error) throw error;
+
+  return data.map((task) => ({
+    ...task,
+    dias_restantes: calcularDiasRestantes(task.fecha_vencimiento),
+  }));
 }
 
 export async function deleteTaskService(userId, id) {

@@ -31,3 +31,13 @@ export const dateHandler = (DOM) => {
         }
     });
 };
+
+export const formatDate = (dateString) => {
+    if (!dateString) return "Por definir"; // Retorna "Por definir" si no hay fecha
+    const date = new Date(dateString);
+    return date.toLocaleDateString("es-ES", {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+    });
+};
