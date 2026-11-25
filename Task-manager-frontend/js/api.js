@@ -1,6 +1,6 @@
 // api.js
-const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
-//const API_URL = "http://localhost:3000"; // o localhost
+//const API_URL = "https://task-manager-app-back-alpha.vercel.app"; // o localhost
+const API_URL = "http://localhost:3000"; // o localhost
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");

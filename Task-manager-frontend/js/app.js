@@ -3,6 +3,7 @@ import {initApp} from "./main.js";
 const DOM ={
     tittleHeader: document.getElementById("user-name"),
     textTaskHeader: document.getElementById("task-of"),
+    letterLogo: document.getElementById("letter-logo"),
     registerForm: document.getElementById('register-form'),
     regName: document.getElementById('regName'),
     regEmail: document.getElementById('regEmail'),

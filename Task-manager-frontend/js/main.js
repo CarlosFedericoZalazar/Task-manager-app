@@ -8,10 +8,11 @@ export const initApp = async (DOM) => {
 
   if (token) {
     DOM.authModal.classList.add("hidden");
-    DOM.appContent.classList.remove("blurred");
-
+    DOM.appContent.classList.remove("blurred");  
     const userData = await getUser(token);
-    DOM.tittleHeader.textContent = `Hola ${userData.user.user_metadata?.display_name || userData.user.email} 👋!`;
+    DOM.tittleHeader.textContent = `${userData.user.user_metadata?.display_name.toUpperCase()}`;
+    DOM.textTaskHeader.textContent = `Tareas de ${userData.user.user_metadata?.display_name}`;
+    DOM.letterLogo.textContent = userData.user.user_metadata?.display_name.charAt(0).toUpperCase();
     dateHandler(DOM); // Llama a la función dateHandler para establecer la fecha mínima
     await cargarTareas(DOM);
   } else {
@@ -19,9 +20,4 @@ export const initApp = async (DOM) => {
   }
 
   initEvents(DOM);
-  const botonBorrarStorage = document.getElementById("btnBorrarStorage");
-  botonBorrarStorage.addEventListener("click", () => {
-    localStorage.removeItem("token");
-    location.reload();
-  });
 };

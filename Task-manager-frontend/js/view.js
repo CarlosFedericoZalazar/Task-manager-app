@@ -12,10 +12,12 @@ export function renderizar(lista, tareas, handlers) {
         let estadoTarea = "por definir";
         const dias = t.dias_restantes;
 
+        console.log("Días restantes:", dias, "Tipo:", typeof dias);
+
         if (typeof dias === "number" && !Number.isNaN(dias)) {
             if (dias > 3) {
                 estadoTarea = "vigente";
-            } else if (dias >= 0) {
+            } else if (dias > 0) {
                 estadoTarea = "pronto a vencer";
             } else {
                 estadoTarea = "vencido";

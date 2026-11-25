@@ -24,10 +24,12 @@ export function initEvents(DOM) {
       mostrarExito(res.message);
       setTimeout(async () => {
         DOM.loginContainer.classList.add("hidden");
+        DOM.loginPassword.type = "password";
         DOM.authModal.style.display = "none";
         DOM.appContent.classList.remove("blurred");
-        DOM.tittleHeader.textContent = `${res.user.name || res.user.email} 👋!`;
-        DOM.textTaskHeader.textContent = `Tareas de ${res.user.name || res.user.email}`;
+        DOM.tittleHeader.textContent = `${res.user.name.toUpperCase()}`;
+        DOM.textTaskHeader.textContent = `Tareas de ${res.user.name}`;
+        DOM.letterLogo.textContent = res.user.name.charAt(0).toUpperCase();
         await cargarTareas(DOM);
       }, 3000);
     } else {
@@ -108,7 +110,8 @@ export function initEvents(DOM) {
 
         cargarTareas(DOM);
         DOM.inputTareas.value = "";
-        DOM.inputDate.value = new Date().toISOString().split("T")[0];
+        DOM.inputDate.value = "";
+        DOM.noDateCheckbox.checked = true;
       }
     } else {
       const editingId = getEditingId();
