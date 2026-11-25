@@ -3,9 +3,10 @@ import { formatDate } from "./utils.js";
 export function renderizar(lista, tareas, handlers) {
     console.log("RENDERIZAR");
     lista.textContent = "";
-    console.log("TAREA:", tareas[1]);
+    console.log("TAREA:", tareas[1]);    
 
     for (const t of tareas) {
+
         const item = document.createElement("li");
         item.className = "data task-item";
 

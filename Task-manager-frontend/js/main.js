@@ -1,7 +1,6 @@
 import { actualizarVista, cargarTareas} from "./ui.js";
 import { initEvents } from "./events.js";
 import {getUser} from "./api.js";
-import {dateHandler} from "./utils.js";
 
 export const initApp = async (DOM) => {
   const token = localStorage.getItem("token");
@@ -13,7 +12,6 @@ export const initApp = async (DOM) => {
     DOM.tittleHeader.textContent = `${userData.user.user_metadata?.display_name.toUpperCase()}`;
     DOM.textTaskHeader.textContent = `Tareas de ${userData.user.user_metadata?.display_name}`;
     DOM.letterLogo.textContent = userData.user.user_metadata?.display_name.charAt(0).toUpperCase();
-    dateHandler(DOM); // Llama a la función dateHandler para establecer la fecha mínima
     await cargarTareas(DOM);
   } else {
     DOM.authModal.classList.remove("hidden");

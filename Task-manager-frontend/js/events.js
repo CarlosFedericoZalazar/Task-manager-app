@@ -7,11 +7,14 @@ import {
 } from "./ui.js";
 import * as api from "./api.js";
 import { mostrarError, mostrarExito } from "./notificaciones.js";
+import {dateHandler} from "./utils.js";
 
 export function initEvents(DOM) {
 
+  dateHandler(DOM);
+
   DOM.authForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evita que se recargue la página
+    e.preventDefault();
 
     const email = DOM.loginEmail.value;
     const password = DOM.loginPassword.value;

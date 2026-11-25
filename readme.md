@@ -51,12 +51,20 @@ Task-manager-app/
 ├── task-manager-frontend/    # Código del cliente (Frontend)
 │   ├── index.html            # Interfaz principal
 │   ├── css/                  # Estilos de la aplicación
-│   └── js/                   # Lógica modular
+|         ├── buttons..css        # Estilos de botones
+|         ├── cards.css           # Estilos de cards tareas
+|         ├── header.css           # Estilos del header
+|         ├── forms.css           # Estilos de formularios
+|         ├── modals.css           # Estilos del modal de edición
+          └── layout.css           # Estilos generales y layout
+│   └── js/
+│       ├── main.js           # Lógica modular
+│       ├── notificaciones.js # manejo de tostify
 │       ├── app.js            # Coordinación del estado y eventos principales
 │       ├── api.js            # Módulo de integración con la API REST
 │       ├── tasks.js          # Lógica de dominio y clase Task
 │       ├── views.js          # Renderizado del DOM e interfaz
-│        y utils.js          # Persistencia en localStorage
+│        y utils.js          # Persistencia en localStorage y manejo del calendario
 │
 └── task-manager-backend/     # Servidor y API REST (Backend)
     ├── controllers/          # Controladores de las rutas
