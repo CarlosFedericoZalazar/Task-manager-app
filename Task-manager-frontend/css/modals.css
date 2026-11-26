@@ -1,12 +1,11 @@
 #inputTarea {
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
     padding: 10px 15px;
     font-size: 1rem;
     outline: none;
     flex-grow: 1;
 }
-
 
 /* Estado borroso inicial del contenido */
 .blurred {
@@ -17,19 +16,18 @@
 }
 
 /* Estilos del Modal */
-
-.text-tittle-modal{
+.text-tittle-modal {
     font-size: 2rem;
-    margin: 0;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
 }
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscurecido sutil */
+    background-color: var(--bg-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,32 +36,34 @@
 }
 
 .modal-content {
-    background: #ffffff;
+    background: var(--bg-surface);
     padding: 1.5rem 2.4rem;
-    border-radius: 0.8rem;
+    border-radius: var(--radius-pill);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.6rem;
-    width: 75%;
+    width: 90%;
     max-width: 400px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-modal);
 }
 
 .modal-content form {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    width: 100%;
 }
 
 .modal-content input {
-    padding: 1rem;
-    font-size: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.4rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-sm);
+    width: 100%;
 }
 
-#text-link-register{
+#text-link-register {
     align-self: center;
 }
 
@@ -71,4 +71,15 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.25rem 1.5rem;
+    }
 }

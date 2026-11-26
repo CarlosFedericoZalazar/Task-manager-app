@@ -1,38 +1,38 @@
 /* Botones */
 .buttons {
-    background-color: #6366F1;
-    color: white; 
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
     border: none;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
-.buttons:hover {
-    background-color: #4F46E5;
-    color: white;
+.buttons:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    color: var(--text-on-accent);
 }
 
-.done{
-    text-decoration: line-through;
+.buttons:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .filter-btn {
-    background-color: #E2E8F0;
-    color: #64748B;
+    background-color: var(--bg-muted);
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 
 .filter-btn.active {
-    background-color: #6366F1;
-    color: white;
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
 }
-
 
 @media (max-width: 480px) {
     #btnAgregar {
-        width: 100%; 
+        width: 100%;
     }
 }

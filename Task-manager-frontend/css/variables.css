@@ -1,0 +1,48 @@
+:root {
+  /* Colores base y superficie */
+  --bg-page: #ebf0f4;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-subtle: #f8fafc;
+  --bg-muted: #e2e8f0;
+  --bg-warm-tint: #fffaf5;
+  --bg-avatar: #fae1cd;
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Colores de texto */
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --text-filter-inactive: #64748b;
+  --text-on-accent: #ffffff;
+  --text-avatar: #b86b35;
+  --text-pending: #9a5423;
+  --text-error: #e44a4a;
+
+  /* Acento y estados */
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --status-vigente: #16a34a;
+  --status-por-vencer: #d97706;
+  --status-vencido: #dc2626;
+
+  /* Bordes */
+  --border-subtle: #e2e8f0;
+  --border-input: #cccccc;
+  --border-card: rgba(148, 163, 184, 0.25);
+  --border-avatar: 2px solid #b86b35;
+  --border-pending: #f3d0b3;
+  --border-vencida: rgba(220, 38, 38, 0.45);
+
+  /* Radios de borde */
+  --radius-sm: 0.4rem;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 0.8rem;
+  --radius-round: 50%;
+
+  /* Sombras */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-task: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-modal: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
