@@ -7,86 +7,121 @@ import {
 } from "./ui.js";
 import * as api from "./api.js";
 import { mostrarError, mostrarExito } from "./notificaciones.js";
-import {dateHandler} from "./utils.js";
+import { dateHandler } from "./utils.js";
+
+function resetBtnFilters(DOM) {
+  DOM.buttonAll.classList.remove("active");
+  DOM.buttonPending.classList.remove("active");
+  DOM.buttonCompleted.classList.remove("active");
+}
+
+function resetTaskForm(DOM) {
+  DOM.inputTarea.value = "";
+  DOM.inputDate.value = "";
+  DOM.noDateCheckbox.checked = true;
+  setEditingId(undefined);
+  DOM.buttonAgregar.textContent = "Agregar";
+}
 
 export function initEvents(DOM) {
-
   dateHandler(DOM);
+  DOM.buttonAll.classList.add("active");
 
   DOM.authForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const submitBtn = DOM.authForm.querySelector('button[type="submit"]');
     const email = DOM.loginEmail.value;
     const password = DOM.loginPassword.value;
 
-    const res = await api.loginUser(email, password);
+    if (submitBtn) submitBtn.disabled = true;
 
-    console.log("Respuesta del login:", res);
-    
-    if (res.ok) {
-      mostrarExito(res.message);
-      setTimeout(async () => {
-        DOM.loginContainer.classList.add("hidden");
-        DOM.loginPassword.type = "password";
-        DOM.authModal.style.display = "none";
-        DOM.appContent.classList.remove("blurred");
-        DOM.tittleHeader.textContent = `${res.user.name.toUpperCase()}`;
-        DOM.textTaskHeader.textContent = `Tareas de ${res.user.name}`;
-        DOM.letterLogo.textContent = res.user.name.charAt(0).toUpperCase();
-        await cargarTareas(DOM);
-      }, 3000);
-    } else {
-      mostrarError(res.error || "Error desconocido al iniciar sesión");
+    try {
+      const res = await api.loginUser(email, password);
+
+      if (res?.ok) {
+        mostrarExito(res.message || "Sesión iniciada");
+        setTimeout(async () => {
+          DOM.loginContainer.classList.add("hidden");
+          DOM.loginPassword.type = "password";
+          DOM.checkPassLogin.checked = false;
+          DOM.authModal.classList.add("hidden");
+          DOM.appContent.classList.remove("blurred");
+
+          const userName = res.user?.name || "Usuario";
+          DOM.titleHeader.textContent = userName.toUpperCase();
+          DOM.textTaskHeader.textContent = `Tareas de ${userName}`;
+          DOM.letterLogo.textContent = userName.charAt(0).toUpperCase();
+
+          await cargarTareas(DOM);
+          if (submitBtn) submitBtn.disabled = false;
+        }, 3000);
+      } else {
+        mostrarError(res?.error || res?.message || "Error desconocido al iniciar sesión");
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    } catch (error) {
+      mostrarError(error.message || "Error al iniciar sesión");
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 
   DOM.btnLogout.addEventListener("click", () => {
     localStorage.removeItem("token");
-    DOM.tittleHeader.textContent = "Task Manager";
+    DOM.titleHeader.textContent = "Task Manager";
     DOM.textTaskHeader.textContent = "";
+    DOM.letterLogo.textContent = "";
     DOM.lista.innerHTML = "";
-    setEditingId(undefined);
+    resetTaskForm(DOM);
     setcurrentFilter("all");
+    resetBtnFilters(DOM);
+    DOM.buttonAll.classList.add("active");
     DOM.authForm.reset();
 
     DOM.loginContainer.classList.remove("hidden");
     DOM.registerContainer.classList.add("hidden");
-    DOM.authModal.style.display = "flex";
     DOM.authModal.classList.remove("hidden");
     DOM.appContent.classList.add("blurred");
   });
 
-  DOM.checkLoginPassword.addEventListener("change", ()=>{
-    console.log("check pass")
-    DOM.loginPassword.type = DOM.loginPassword.type == "password" ? "text" : "password";
-  })
+  DOM.checkPassLogin.addEventListener("change", () => {
+    DOM.loginPassword.type = DOM.checkPassLogin.checked ? "text" : "password";
+  });
 
-  DOM.checkLoginRegister.addEventListener("change", ()=>{
-    console.log("check pass")
-    DOM.regPassword.type = DOM.regPassword.type == "password" ? "text" : "password";
-  })
+  DOM.checkPassRegister.addEventListener("change", () => {
+    DOM.regPassword.type = DOM.checkPassRegister.checked ? "text" : "password";
+  });
 
   DOM.registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
+    const submitBtn = DOM.registerForm.querySelector('button[type="submit"]');
     const usuario = {
       name: DOM.regName.value,
       email: DOM.regEmail.value,
       password: DOM.regPassword.value,
     };
 
-    const res = await api.registrarUsuario(usuario);
-    
-    if (res.ok) {
-      mostrarExito(res.message); 
+    if (submitBtn) submitBtn.disabled = true;
 
-      setTimeout(() => {
+    try {
+      const res = await api.registrarUsuario(usuario);
+
+      if (res?.ok) {
+        mostrarExito(res.message || "Registro completado");
+        setTimeout(() => {
           DOM.registerContainer.classList.add("hidden");
           DOM.loginContainer.classList.remove("hidden");
-      }, 3000);
-    } else {
-      console.error("MENSAJE! Error al registrar el usuario:", res.error);
-      mostrarError(res.error || "Error desconocido al registrar el usuario");
+          DOM.registerForm.reset();
+          if (submitBtn) submitBtn.disabled = false;
+        }, 3000);
+      } else {
+        mostrarError(res?.error || "Error desconocido al registrar el usuario");
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    } catch (error) {
+      mostrarError(error.message || "Error al registrar el usuario");
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 
@@ -103,55 +138,56 @@ export function initEvents(DOM) {
   });
 
   DOM.buttonAgregar.addEventListener("click", async () => {
-    // logica agregar y actualizar
-    if (DOM.buttonAgregar.textContent === "Agregar") {
-      if (DOM.inputTareas.value.trim() !== "") {
-        console.log(`mandamos ${DOM.inputTareas.value} y  ${DOM.inputDate.value}`);
-        // Directo al grano: solo texto y fecha. El token viaja solo en api.js
-        const res = await api.createTask(DOM.inputTareas.value, DOM.inputDate.value);
-        console.log(res);
+    const texto = DOM.inputTarea.value.trim();
+    if (!texto) return;
 
-        cargarTareas(DOM);
-        DOM.inputTareas.value = "";
-        DOM.inputDate.value = "";
-        DOM.noDateCheckbox.checked = true;
+    const fechaVencimiento = DOM.noDateCheckbox.checked
+      ? null
+      : DOM.inputDate.value || null;
+
+    DOM.buttonAgregar.disabled = true;
+
+    try {
+      if (DOM.buttonAgregar.textContent === "Agregar") {
+        await api.createTask(texto, fechaVencimiento);
+        await cargarTareas(DOM);
+        resetTaskForm(DOM);
+        mostrarExito("Tarea agregada");
+      } else {
+        const editingId = getEditingId();
+        await api.updateTask(editingId, {
+          texto,
+          fechaVencimiento,
+        });
+        await cargarTareas(DOM);
+        resetTaskForm(DOM);
+        mostrarExito("Tarea actualizada");
       }
-    } else {
-      const editingId = getEditingId();
-      await api.updateTask(editingId, {
-        texto: DOM.inputTareas.value,
-      });
-
-      cargarTareas(DOM);
-      DOM.inputTareas.value = "";
-      setEditingId(undefined);
-      DOM.buttonAgregar.textContent = "Agregar";
+    } catch (error) {
+      mostrarError(error.message || "Error al guardar la tarea");
+    } finally {
+      DOM.buttonAgregar.disabled = false;
     }
   });
 
   DOM.buttonAll.addEventListener("click", () => {
     resetBtnFilters(DOM);
+    DOM.buttonAll.classList.add("active");
     setcurrentFilter("all");
     actualizarVista(DOM);
   });
 
   DOM.buttonPending.addEventListener("click", () => {
     resetBtnFilters(DOM);
-    setcurrentFilter("pending");
     DOM.buttonPending.classList.add("active");
+    setcurrentFilter("pending");
     actualizarVista(DOM);
   });
 
   DOM.buttonCompleted.addEventListener("click", () => {
     resetBtnFilters(DOM);
-    setcurrentFilter("completed");
     DOM.buttonCompleted.classList.add("active");
+    setcurrentFilter("completed");
     actualizarVista(DOM);
   });
-}
-
-function resetBtnFilters(DOM) {
-  DOM.buttonAll.classList.remove("active");
-  DOM.buttonPending.classList.remove("active");
-  DOM.buttonCompleted.classList.remove("active");
 }

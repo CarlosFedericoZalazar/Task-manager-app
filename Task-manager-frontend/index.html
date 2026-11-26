@@ -19,10 +19,10 @@
             <div id="login-container">
                 <h2 class="text-tittle-modal">Iniciar Sesión</h2>
                 <form id="auth-form">
-                    <input type="email" id="inputEmail" placeholder="Correo electrónico" required>
-                    <input type="password" id="inputPassword" placeholder="Contraseña" required>
+                    <input type="email" id="inputEmail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
+                    <input type="password" id="inputPassword" placeholder="Contraseña" aria-label="Contraseña" required>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="checkPassLogin"><span>Mostrar contraseña</span>
+                        <input type="checkbox" id="checkPassLogin"><label for="checkPassLogin">Mostrar contraseña</label>
                     </div>
                     <button type="submit" id="btnLogin" class="buttons">Acceder</button>
                     <span id="text-link-register">¿ERES NUEVO? <a href="#" id="link-to-register">REGÍSTRATE</a></span>
@@ -33,11 +33,11 @@
             <div id="register-container" class="hidden">
                 <h2 class="text-tittle-modal">Crear Cuenta</h2>
                 <form id="register-form">
-                    <input type="text" id="regName" placeholder="Nombre completo" required>
-                    <input type="email" id="regEmail" placeholder="Correo electrónico" required>
-                    <input type="password" id="regPassword" placeholder="Contraseña" required>
+                    <input type="text" id="regName" placeholder="Nombre completo" aria-label="Nombre completo" required>
+                    <input type="email" id="regEmail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
+                    <input type="password" id="regPassword" placeholder="Contraseña" aria-label="Contraseña" required>
                     <div class="checkbox-container">
-                        <input type="checkbox" id="checkPassRegister"><span>Mostrar contraseña</span>
+                        <input type="checkbox" id="checkPassRegister"><label for="checkPassRegister">Mostrar contraseña</label>
                     </div>
                     <button type="submit" id="btnRegister" class="buttons">Registrarse</button>
                     <span>¿YA TIENES CUENTA? <a href="#" id="link-to-login">INICIA SESIÓN</a></span>
@@ -61,14 +61,14 @@
                 </div>
             </section>
             <section id="section-pending">
-               <p id="text-total" class="text-infoTasks">Total: 0</p>
-               <p  id="text-pending" class="text-infoTasks">Pendientes: 0</p>
+                <p id="text-total" class="text-infoTasks">Total: 0</p>
+                <p id="text-pending" class="text-infoTasks">Pendientes: 0</p>
             </section>
         </header>
         <main>
             <div id="insert-data">
                 <div id="div-inputTask">
-                    <input id="inputTarea" placeholder="Nueva tarea">
+                    <input id="inputTarea" placeholder="Nueva tarea" aria-label="Nueva tarea">
                     <button id="btnAgregar" class="buttons">Agregar</button>
                 </div>
                 <div id="div-inputDate">
@@ -77,7 +77,6 @@
                     <input type="checkbox" id="noDateCheckbox">
                     <label for="noDateCheckbox">Sin vencimiento</label>
                 </div>
-                <!-- <p id="message-error"></p> -->
             </div>
             <div id="div-filters">
                 <button id="buttonAll" class="filter-btn buttons">Todas</button>

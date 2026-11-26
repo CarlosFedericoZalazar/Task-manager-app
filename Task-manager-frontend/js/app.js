@@ -1,44 +1,35 @@
-import {initApp} from "./main.js";
+import { initApp } from "./main.js";
 
-const DOM ={
-    tittleHeader: document.getElementById("user-name"),
-    textTaskHeader: document.getElementById("task-of"),
-    letterLogo: document.getElementById("letter-logo"),
-    registerForm: document.getElementById('register-form'),
-    regName: document.getElementById('regName'),
-    regEmail: document.getElementById('regEmail'),
-    regPassword: document.getElementById('regPassword'),
-    checkLoginRegister: document.getElementById('checkPassRegister'),
-    loginEmail: document.getElementById('inputEmail'),
-    loginPassword: document.getElementById('inputPassword'),
-    checkLoginPassword: document.getElementById('checkPassLogin'),
-    inputDate: document.getElementById('inputDate'),
-    noDateCheckbox: document.getElementById('noDateCheckbox'),
-    buttonAll: document.getElementById("buttonAll"),
-    buttonPending:document.getElementById("buttonPending"),
-    buttonCompleted:document.getElementById("buttonCompleted"),    
-    textPending: document.getElementById("text-pending"),    
-    textTotal: document.getElementById("text-total"),    
-    buttonAgregar: document.getElementById("btnAgregar"),
-    btnLogout: document.getElementById("btnLogout"),
-    inputTareas: document.getElementById("inputTarea"),
-    lista: document.getElementById("lista"),
-    error: document.getElementById("message-error"),
-    authForm: document.getElementById('auth-form'),
-    authModal: document.getElementById('auth-modal'),
-    appContent: document.getElementById('app-content'),
-    loginContainer : document.getElementById('login-container'),
-    registerContainer : document.getElementById('register-container'),
-    linkToRegister : document.getElementById('link-to-register'),
-    linkToLogin : document.getElementById('link-to-login')
+const DOM = {
+  titleHeader: document.getElementById("user-name"),
+  textTaskHeader: document.getElementById("task-of"),
+  letterLogo: document.getElementById("letter-logo"),
+  registerForm: document.getElementById("register-form"),
+  regName: document.getElementById("regName"),
+  regEmail: document.getElementById("regEmail"),
+  regPassword: document.getElementById("regPassword"),
+  checkPassRegister: document.getElementById("checkPassRegister"),
+  loginEmail: document.getElementById("inputEmail"),
+  loginPassword: document.getElementById("inputPassword"),
+  checkPassLogin: document.getElementById("checkPassLogin"),
+  inputDate: document.getElementById("inputDate"),
+  noDateCheckbox: document.getElementById("noDateCheckbox"),
+  buttonAll: document.getElementById("buttonAll"),
+  buttonPending: document.getElementById("buttonPending"),
+  buttonCompleted: document.getElementById("buttonCompleted"),
+  textPending: document.getElementById("text-pending"),
+  textTotal: document.getElementById("text-total"),
+  buttonAgregar: document.getElementById("btnAgregar"),
+  btnLogout: document.getElementById("btnLogout"),
+  inputTarea: document.getElementById("inputTarea"),
+  lista: document.getElementById("lista"),
+  authForm: document.getElementById("auth-form"),
+  authModal: document.getElementById("auth-modal"),
+  appContent: document.getElementById("app-content"),
+  loginContainer: document.getElementById("login-container"),
+  registerContainer: document.getElementById("register-container"),
+  linkToRegister: document.getElementById("link-to-register"),
+  linkToLogin: document.getElementById("link-to-login"),
 };
 
 initApp(DOM);
-
-
-
-
-
-
-
-
